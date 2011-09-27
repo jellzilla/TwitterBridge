@@ -1,16 +1,20 @@
 INTERACTION & EXPRESSION USING THE PAUSCH BRIDGE LIGHTING
 =========================================================
 
-Group 3
-Mickey Reiss
-Zak Metzner
-...
-...
+>Group 3
+>Mickey Reiss
+>Zak Metzner
+>...
+>...
 
 
 Assignment
 ----------
 15 - 30 minute light show on the Pausch Bridge
+
+Working Title
+-------------
+???
 
 Idea
 ----
@@ -61,9 +65,25 @@ When our show is not running,
 When our show ends,
   the bridge will Tweet goodbye.
 
+### Attributes
+  - Color
+  - Movement
+  - Patterns (Split)
+  - Palates (e.g. winter, happy, CMU Pride, etc.)
+### Commands
+  - Polite (fades)
+  - Urgent (snap)
+  - ...
+
 Technical Design
 ----------------
 ### Technology stack/infrastructure requirements
+### Natural language command specification
+
+- "Please, ..."
+- "...!"
+- etc. ...
+
 ### Modules
 #### Twitter interface
 #### Command parsing interface
