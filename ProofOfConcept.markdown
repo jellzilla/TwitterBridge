@@ -8,6 +8,12 @@ accessible web bridge. Instead of sending commands to a pharos controller,
 this interface parses Twitter messages and passes them to a simple web
 interface.
 
+Starting the Webserver
+======================
+Install rvm, ruby and rubygems. Install bundler.
+$ bundle install
+$ rackup
+
 Functional Design
 =================
 1. User Tweets at @Pausch_Bridge.
