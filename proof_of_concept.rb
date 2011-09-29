@@ -7,10 +7,11 @@ class ProofOfConcept
   end
   
   def color=(new_color)
+    new_color = new_color[/#[a-fA-F0-9]{6}/]
     if validate_color new_color
       @color = new_color 
     else
-      raise "Bad color"
+      raise "Bad color: #{new_color}"
     end
   end
   
@@ -23,18 +24,17 @@ class ProofOfConcept
   end
 
   def check_twitter
-    case rand 5
-    when 0
-      "#FF0000"
-    when 1
-      "#00FF00"
-    when 2
-      "#0000FF"
-    when 3
-      "#000000"
-    when 4
-      "#FFFFFF"
+    Twitter.configure do |config|
+      config.consumer_key = "DKhWrTEKrZQ054TVfNbCg"
+      config.consumer_secret = "agr2Lye5Q2lzRmMjlhfBgnXuNhEeM5X7BkTwWhcaE"
+      config.oauth_token = "378213207-sQQJeD6WN3TIT2lmVbnxbSS4Vz8yev3OqtbNmRBw"
+      config.oauth_token_secret = "VGNWzXd6NS0FUhxlvFAeik2FQSw3aHBv5N6jxZ1pW4"
     end
+
+    client = Twitter::Client.new
+#.user_timeline("pausch_bridge").last.text
+    dms = client.mentions.first.text
+    #Twitter.user_timeline("pausch_bridge").first.text
   end
 
   # MAIN WEBSERVER
@@ -42,14 +42,15 @@ class ProofOfConcept
     poc = self.new
 
     proc do |env|
-      self.color = check_twitter
+      poc.color = poc.check_twitter
 
       [
         200,          # Status code
         {             # Response headers
-          'Content-Type' => 'text/plain',
+          'Content-Type' => 'text/html',
         },
-        [poc.color]        # Response body
+        ["<html><head><style type='text/css'>body {background-color:
+#{poc.color};}</style></head><body>#{poc.check_twitter}</body></html>"]        # Response body
       ]
     end
   end

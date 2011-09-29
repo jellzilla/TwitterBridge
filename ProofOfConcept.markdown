@@ -8,8 +8,8 @@ accessible web bridge. Instead of sending commands to a pharos controller,
 this interface parses Twitter messages and passes them to a simple web
 interface.
 
-Starting the Webserver
-======================
+Dependencies and Running
+========================
 Install rvm, ruby and rubygems. Install bundler.
 $ bundle install
 $ rackup
