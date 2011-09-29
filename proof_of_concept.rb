@@ -42,6 +42,8 @@ class ProofOfConcept
     poc = self.new
 
     proc do |env|
+      self.color = check_twitter
+
       [
         200,          # Status code
         {             # Response headers
