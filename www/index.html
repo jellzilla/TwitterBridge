@@ -1,0 +1,46 @@
+<html>
+<head>
+  <script src="./raphael-min.js"></script>
+</head>
+<body bgcolor="#000">
+  <script>
+    /* Some bridge constants */
+    var bridge_len = 57; /* 57 4-inch blocks */
+    var panel_len = 3;  /* Split by 1 foot panels */
+    var panel_num = bridge_len / panel_len;
+    var panel_h = 100;
+    var panel_w = 50;
+    var panel_sep = 5;
+    var panel_left = (document.body.offsetWidth - panel_num * (panel_w + panel_sep) - panel_sep) / 2 ;
+    var panel_top = (document.body.offsetHeight - panel_h) / 2 ;
+
+    /* Make the new Raphael canvas */
+    var paper = Raphael(0, 0, "100%", "100%");
+
+    /* Create the bridge (rainbow) */
+    var bridge = new Array();
+    for (var i = 0; i < panel_num; i++)
+    {
+      /* Create the panel */
+      bridge[i] = paper.rect(panel_left + i * (panel_w + panel_sep), panel_top, panel_w, panel_h);
+
+      /* Set the panel's hue */
+      var hsb = {h: i * 255 / panel_num, s: 100, b: 50};
+      bridge[i].attr({fill: paper.raphael.hsb2rgb(hsb).hex, opacity: 1});
+    }
+
+    /* Example animation from full opacity to none */
+    function anim (i)
+    {
+      var o = bridge[i].attr("opacity");
+      bridge[i].animate({opacity: 1 - o}, 1000, function(){anim(i);});
+    }
+
+    /* Animate in a wave (100ms offsets) */
+    for (var i = 0; i < panel_num; i++)
+    {
+      setTimeout(anim, 100 * i, i);
+    }
+  </script>
+</body>
+</html>
